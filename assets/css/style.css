@@ -1,0 +1,40 @@
+body {
+    font-family: Helvetica, sans-serif;
+    margin: auto;
+    text-align: center;
+}
+
+header {
+    border-bottom: 2px solid black;
+}
+
+h1 {
+    font-size: 5em;
+    font-weight: 700;
+    display: inline-block;
+}
+
+#logo {
+    color: red;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+button {
+    font-size: 3em;
+    margin: 50px;
+    padding: 20px;
+}
+
+img {
+    height: 200px;
+    width: auto;
+}
+
