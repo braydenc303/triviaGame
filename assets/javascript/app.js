@@ -114,7 +114,7 @@ function decrement () {
     }
 }
 
-// Display the first question along with choices.
+// Display the question along with choices.
 
 function playGame() {
     console.log(i);
@@ -137,6 +137,8 @@ function playGame() {
     }
 }
 
+// Reset the timer and display the next question and set of choices.
+
 function newRound() {
         $("#timer").empty();
         $("#question").empty();
@@ -147,20 +149,52 @@ function newRound() {
         $("#answers").append("<h3>" + choice2 + "</h3>");
         $("#answers").append("<h3>" + choice3 + "</h3>");
         $("#answers").append("<h3>" + choice4 + "</h3>");
-     
-            
-
-
-
 }
-// On page load, create a button in the game area that says start, and begins the game on click.
 
+//Reset the game after completion to allow the player to begin again.
+function resetGame(){
+    clearTimeout(timeoutId);
+    clearInterval(intervalId);
+    i = 0;
+    correct = 0;
+    incorrect = 0;
+    unAnswered = 0;
+    $("#timer").empty();
+    $("#question").empty();
+    $("#answers").empty();
+    $("#question").append("<button>Start</button>");
+    $("button").on("click", playIntro);
+    
+}
+//Once all questions have been answered display totals for the play and reset game after 3 seconds.
+function endGame(){
+    clearTimeout(timeoutId);
+    clearInterval(intervalId);
+    i = 0;
+    $("#timer").empty();
+    $("#question").empty();
+    $("#answers").empty();
+    $("#timer").html("<h2>Correct: " + correct + "</h2>");
+    $("#question").html("<h2>Incorrect: " + incorrect + "</h2>");
+    $("#answers").html("<h2>Unanswered: " + unAnswered + "</h2>");
+    resetID = setTimeout(resetGame, 3000);
+}
+//Play intro video and then begin game.
+function playIntro() {
+    timeoutId = setTimeout(playGame, 8500);
+    $("#question").html("<video width='640' height='480' autoplay><source src='assets/images/intro.mp4' type='video/mp4'></video>");
+}
+        
+// On page load, create a button in the game area that says start, and begins the game on click.
 $(document).ready($("#question").append("<button>Start</button>"));
-$("button").on("click", playGame);
+//On button click play intro video.
+$("button").on("click", playIntro);
+// Compare the user's choice from on click, to the correct answer.
 $("#answers").on("click", "h3", function() {
     clearInterval(intervalId);
-    clearTimeout(timeoutId);
     var guess = $(this).text();
+// Change the game area's text to let the play know if they were correct or not, increment the proper counter,
+// and display an image relating to the answer for three seconds.
     if(guess === ans) {
         correct++;
         $("#timer").html("<h2>You are correct!</h2>");
@@ -185,40 +219,7 @@ $("#answers").on("click", "h3", function() {
 
 
 
-// Highlight the choice the player hover's over before click.
-
-// Compare the user's choice from on click, to the correct answer.
-// Change the game area's text to let the play know if they were correct or not, increment the proper counter,
-// and display an image relating to the answer for three seconds.
-
-function resetGame(){
-    clearTimeout(timeoutId);
-    clearInterval(intervalId);
-    i = 0;
-    correct = 0;
-    incorrect = 0;
-    unAnswered = 0;
-    $("#timer").empty();
-    $("#question").empty();
-    $("#answers").empty();
-    $("#question").append("<button>Start</button>");
-    $("button").on("click", playGame);
-    
-}
-// Reset the timer and display the next question and set of choices.
 
 
 
-function endGame(){
-    clearTimeout(timeoutId);
-    clearInterval(intervalId);
-    i = 0;
-    $("#timer").empty();
-    $("#question").empty();
-    $("#answers").empty();
-    $("#timer").html("<h2>Correct: " + correct + "</h2>");
-    $("#question").html("<h2>Incorrect: " + incorrect + "</h2>");
-    $("#answers").html("<h2>Unanswered: " + unAnswered + "</h2>");
-    resetID = setTimeout(resetGame, 3000);
-}
 

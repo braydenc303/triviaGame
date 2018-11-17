@@ -26,8 +26,10 @@ h2 {
 
 h3 {
     font-size: 2em;
+    padding-top: 5px;
 }
 
+/* Highlight the choice the player hover's over before click. */
 h3:hover {
     border: solid 2px black;
 }
@@ -35,11 +37,12 @@ h3:hover {
 button {
     font-size: 3em;
     margin: 50px;
-    padding: 20px;
+    padding: 20px 30px;
 }
 
 img {
     height: 200px;
+    padding-top: 10px;
     width: auto;
 }
 
