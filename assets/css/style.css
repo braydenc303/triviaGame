@@ -21,10 +21,15 @@ h1 {
 
 h2 {
     font-size: 3em;
+    padding: 10px;
 }
 
 h3 {
     font-size: 2em;
+}
+
+h3:hover {
+    border: solid 2px black;
 }
 
 button {
