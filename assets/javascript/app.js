@@ -147,26 +147,9 @@ function newRound() {
         $("#answers").append("<h3>" + choice2 + "</h3>");
         $("#answers").append("<h3>" + choice3 + "</h3>");
         $("#answers").append("<h3>" + choice4 + "</h3>");
-        $("#answers").on("click", "h3", function() {
-            clearInterval(intervalId);
-            clearTimeout(timeoutId);
-            var guess = $(this).text();
-            if(guess === ans) {
-                correct++;
-                $("#timer").html("<h2>You are correct!</h2>");
-                $("#question").html("<h2>"+ ans + "</h2>");
-                $("#answers").html("<img src ='" + pic + "'</>");
-                clearTimeout(timeoutId);
-            } else {
-                incorrect++;
-                $("#timer").html("<h2>Sorry, the correct answer was:</h2>");
-                $("#question").html("<h2>"+ ans + "</h2>");
-                $("#answers").html("<img src ='" + pic + "'</>");
-                clearTimeout(timeoutId);
-            }
-            timeoutId = setTimeout(playGame, 3000);
+     
             
-        });
+
 
 
 }
@@ -174,6 +157,26 @@ function newRound() {
 
 $(document).ready($("#question").append("<button>Start</button>"));
 $("button").on("click", playGame);
+$("#answers").on("click", "h3", function() {
+    clearInterval(intervalId);
+    clearTimeout(timeoutId);
+    var guess = $(this).text();
+    if(guess === ans) {
+        correct++;
+        $("#timer").html("<h2>You are correct!</h2>");
+        $("#question").html("<h2>"+ ans + "</h2>");
+        $("#answers").html("<img src ='" + pic + "'</>");
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(playGame, 3000);
+    } else {
+        incorrect++;
+        $("#timer").html("<h2>Sorry, the correct answer was:</h2>");
+        $("#question").html("<h2>"+ ans + "</h2>");
+        $("#answers").html("<img src ='" + pic + "'</>");
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(playGame, 3000);
+    }
+});
 
 
 
