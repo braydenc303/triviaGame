@@ -1,3 +1,7 @@
+
+// Variables====================================================================================================
+
+// Array of questions, choices, answers and associated pictures.
 var qAndA = [
     {
         question: "What year did TED Begin?",
@@ -74,20 +78,28 @@ var qAndA = [
     }
 ];
 
+// Current Question
 var quest;
+// Possible Choices
 var choice1;
 var choice2;
 var choice3;
 var choice4;
+// Correct answer to current question
 var ans;
+// Picture associated with current answer.
 var pic;
+// Player tallies
 var correct = 0;
 var incorrect = 0;
 var unAnswered = 0;
+// Variables for timers, and loops.
 var intervalId;
 var timeoutId;
 var timer = 10;
 var i = 0;
+
+// Functions====================================================================================================
 
 // On game start, display a timer with 20 seconds on the clock that begins counting down.
 function decrement () {
@@ -184,6 +196,8 @@ function playIntro() {
     timeoutId = setTimeout(playGame, 8500);
     $("#question").html("<video width='640' height='480' autoplay><source src='assets/images/intro.mp4' type='video/mp4'></video>");
 }
+
+// Main Process====================================================================================================
         
 // On page load, create a button in the game area that says start, and begins the game on click.
 $(document).ready($("#question").append("<button>Start</button>"));
