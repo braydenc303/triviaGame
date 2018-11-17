@@ -85,7 +85,7 @@ var correct = 0;
 var incorrect = 0;
 var unAnswered = 0;
 var intervalId;
-var timeoutID;
+var timeoutId;
 var timer = 10;
 var i = 0;
 
@@ -105,15 +105,13 @@ function decrement () {
         $("#question").html("<h2>"+ ans + "</h2>");
         $("#answers").html("<img src ='" + pic + "'</>");  
         if (i < qAndA.length) {
-            clearTimeout(timeoutID);
-            timeoutID = setTimeout(playGame, 3000);
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(playGame, 3000);
         } else {
-            clearTimeout(timeoutID);
-            timeoutID = setTimeout(endGame, 3000);
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(endGame, 3000);
         } 
     }
-    
-
 }
 
 // Display the first question along with choices.
@@ -121,7 +119,7 @@ function decrement () {
 function playGame() {
     console.log(i);
     clearInterval(intervalId);
-    clearTimeout(timeoutID);
+    clearTimeout(timeoutId);
     intervalId = setInterval(decrement, 1000);
     if (i < qAndA.length) {
         quest = qAndA[i].question;
@@ -151,27 +149,22 @@ function newRound() {
         $("#answers").append("<h3>" + choice4 + "</h3>");
         $("#answers").on("click", "h3", function() {
             clearInterval(intervalId);
+            clearTimeout(timeoutId);
             var guess = $(this).text();
-            if (guess === ans) {
-                correct++;
-                console.log(correct);
-            } else {
-                incorrect++;
-                console.log(incorrect);
-            }
             if(guess === ans) {
+                correct++;
                 $("#timer").html("<h2>You are correct!</h2>");
                 $("#question").html("<h2>"+ ans + "</h2>");
                 $("#answers").html("<img src ='" + pic + "'</>");
-                clearTimeout(timeoutID);
-                timeoutID = setTimeout(playGame, 3000);
+                clearTimeout(timeoutId);
             } else {
+                incorrect++;
                 $("#timer").html("<h2>Sorry, the correct answer was:</h2>");
                 $("#question").html("<h2>"+ ans + "</h2>");
                 $("#answers").html("<img src ='" + pic + "'</>");
-                clearTimeout(timeoutID);
-                timeoutID = setTimeout(playGame, 3000);
+                clearTimeout(timeoutId);
             }
+            timeoutId = setTimeout(playGame, 3000);
             
         });
 
@@ -187,6 +180,8 @@ $("button").on("click", playGame);
 
 
 
+
+
 // Highlight the choice the player hover's over before click.
 
 // Compare the user's choice from on click, to the correct answer.
@@ -194,7 +189,7 @@ $("button").on("click", playGame);
 // and display an image relating to the answer for three seconds.
 
 function resetGame(){
-    clearTimeout(timeoutID);
+    clearTimeout(timeoutId);
     clearInterval(intervalId);
     i = 0;
     correct = 0;
@@ -212,7 +207,7 @@ function resetGame(){
 
 
 function endGame(){
-    clearTimeout(timeoutID);
+    clearTimeout(timeoutId);
     clearInterval(intervalId);
     i = 0;
     $("#timer").empty();
