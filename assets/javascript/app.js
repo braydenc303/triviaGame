@@ -96,7 +96,7 @@ var unAnswered = 0;
 // Variables for timers, and loops.
 var intervalId;
 var timeoutId;
-var timer = 10;
+var timer = 15;
 var i = 0;
 
 // Functions====================================================================================================
@@ -141,7 +141,7 @@ function playGame() {
         choice4 = qAndA[i].choices[3];
         ans = qAndA[i].answer;
         pic = qAndA[i].picture;
-        timer = 10;
+        timer = 15;
         i++;
         newRound();
     } else {
